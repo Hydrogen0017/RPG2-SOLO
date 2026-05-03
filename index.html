@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        <div id="dialogue-box" class="hidden">
+            <div id="dialogue-content">
+                <div id="dialogue-speaker"></div>
+                <div id="dialogue-text"></div>
+                <div id="dialogue-buttons">
+                    <button id="btn-prev-dialogue" class="dialogue-btn">◀ 上一句</button>
+                    <div id="dialogue-continue">▼</div>
+                </div>
+            </div>
+        </div>
+        <div id="menu-overlay" class="hidden">
+            <div class="menu-box">
+                <h2>菜单</h2>
+                <button id="btn-continue">继续游戏</button>
+                <button id="btn-chapters">章节选择</button>
+                <button id="btn-gallery">花絮画廊</button>
+                <button id="btn-save">保存进度</button>
+            </div>
+        </div>
+        <div id="chapter-select" class="hidden">
+            <div class="menu-box">
+                <h2>章节选择</h2>
+                <div id="chapter-list"></div>
+                <button id="btn-back-menu">返回</button>
+            </div>
+        </div>
+        <div id="gallery" class="hidden">
+            <div class="menu-box">
+                <h2>花絮画廊</h2>
+                <div id="gallery-grid"></div>
+                <button id="btn-back-gallery">返回</button>
+            </div>
+        </div>
+        <div id="title-screen">
+            <div id="title-bg"></div>
+            <div id="title-buttons">
+                <button id="btn-start">开始测试</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/engine.js"></script>
+    <script src="js/assets.js"></script>
+    <script src="js/chapters.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
