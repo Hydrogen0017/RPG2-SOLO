@@ -22,6 +22,25 @@ class GameEngine {
         this.lastTime = 0;
 
         this.setupEventListeners();
+        this.setupResize();
+    }
+
+    setupResize() {
+        const resizeCanvas = () => {
+            const container = document.getElementById('game-container');
+            const rect = container.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            this.canvas.width = Math.round(rect.width * dpr);
+            this.canvas.height = Math.round(rect.height * dpr);
+            const scale = dpr * rect.width / 960;
+            this.ctx.setTransform(scale, 0, 0, scale, 0, 0);
+        };
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(resizeCanvas, 100);
+        });
     }
 
     setupEventListeners() {
@@ -45,6 +64,11 @@ class GameEngine {
         this.canvas.addEventListener('click', () => {
             this.advanceDialogue();
         });
+
+        this.canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.advanceDialogue();
+        }, { passive: false });
 
         const prevBtn = document.getElementById('btn-prev-dialogue');
         if (prevBtn) {
@@ -129,7 +153,7 @@ class GameEngine {
 
     render() {
         this.ctx.fillStyle = '#1a1a2e';
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillRect(0, 0, 960, 640);
 
         if (this.currentScene && this.currentScene.render) {
             this.currentScene.render(this.ctx, this.currentDialogueIndex, 0);
@@ -138,7 +162,7 @@ class GameEngine {
 
     renderWithTime(time) {
         this.ctx.fillStyle = '#1a1a2e';
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillRect(0, 0, 960, 640);
 
         if (this.currentScene && this.currentScene.render) {
             this.currentScene.render(this.ctx, this.currentDialogueIndex, time);
